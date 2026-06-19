@@ -11,8 +11,8 @@ export default function Hero() {
             <span className="dot" /> Pharmaceutical &amp; biopharma equipment · Thailand
           </div>
           <h1 className="hero-title">
-            Process equipment for{" "}
-            <span className="gradient-text">sterile manufacturing.</span>
+            Science and{" "}
+            <span className="gradient-text">Pharmaceutical equipments</span>
           </h1>
           <p className="hero-desc">
             SPD Biotech supplies and supports world-class filtration, single-use,
