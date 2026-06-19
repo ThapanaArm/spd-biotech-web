@@ -15,10 +15,7 @@ export default function Hero() {
             <span className="gradient-text">Pharmaceutical equipments</span>
           </h1>
           <p className="hero-desc">
-            SPD Biotech supplies and supports world-class filtration, single-use,
-            integrity testing, pumping, disinfection and sterilization technology —
-            helping Thailand&apos;s pharma and biotech manufacturers build compliant,
-            reliable processes.
+            Consumable products Consultant services for Pharmaceutical and Biotechnology Solutions
           </p>
           <div className="hero-actions">
             <a href="#solutions" className="btn btn-primary btn-lg">Explore solutions</a>
