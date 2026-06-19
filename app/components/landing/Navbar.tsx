@@ -27,9 +27,9 @@ export default function Navbar() {
         </Link>
         <ul className="nav-links">
           <li><a href="#about">About</a></li>
+          <li><a href="#why">Why SPD</a></li>
           <li><a href="#solutions">Solutions</a></li>
           <li><a href="#products">Products</a></li>
-          <li><a href="#why">Why SPD</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -47,9 +47,9 @@ export default function Navbar() {
       </div>
       <div className={"mobile-menu" + (menuOpen ? " open" : "")} id="mobileMenu">
         <a href="#about" onClick={closeMenu}>About</a>
+        <a href="#why" onClick={closeMenu}>Why SPD</a>
         <a href="#solutions" onClick={closeMenu}>Solutions</a>
         <a href="#products" onClick={closeMenu}>Products</a>
-        <a href="#why" onClick={closeMenu}>Why SPD</a>
         <a href="#team" onClick={closeMenu}>Team</a>
         <a href="#contact" onClick={closeMenu}>Contact</a>
         <a href="#contact" className="btn btn-primary" style={{ marginTop: 8 }} onClick={closeMenu}>
