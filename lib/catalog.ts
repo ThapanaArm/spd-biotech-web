@@ -202,17 +202,17 @@ export type Product = {
 
 // Featured products ("สินค้าแนะนำ") shown on the homepage.
 export const PRODUCTS: Product[] = [
-  { id: "imaflow", name: "Imaflow", nameEn: "Platinum-cured silicone transparent tube", brand: "Ami Polymer", tone: "tube", icon: "➿" },
-  { id: "imapure", name: "Imapure", nameEn: "Platinum-cured silicone tube — regulatory market", brand: "Ami Polymer", tone: "tube", icon: "➿" },
-  { id: "imapex", name: "Imapex", nameEn: "Peroxide-cured silicone tube", brand: "Ami Polymer", tone: "tube", icon: "➿" },
-  { id: "air-sampler", name: "Air Sampler", nameEn: "Microbial air sampler", tone: "air", icon: "🌬️" },
+  { id: "imaflow", name: "Imaflow", nameEn: "Platinum-cured silicone transparent tube", brand: "Ami Polymer", tone: "tube", icon: "➿" ,image: "/products/297849.jpg"},
+  { id: "imapure", name: "Imapure", nameEn: "Platinum-cured silicone tube — regulatory market", brand: "Ami Polymer", tone: "tube", icon: "➿",image: "/products/297848.jpg"},
+  { id: "imapex", name: "Imapex", nameEn: "Peroxide-cured silicone tube", brand: "Ami Polymer", tone: "tube", icon: "➿",image: "/products/297847.jpg"},
+  { id: "air-sampler", name: "Air Sampler", nameEn: "Microbial air sampler", tone: "air", icon: "🌬️",image: "/products/297846.jpg"},
   { id: "filter-integrity", name: "เครื่องทดสอบการรั่วของไส้กรอง", nameEn: "Filter Integrity Tester", brand: "Neuronbc", tone: "device", icon: "📟", image: "/products/filter-integrity-tester.jpg" },
-  { id: "glove-integrity", name: "เครื่องทดสอบการรั่วของถุงมือ", nameEn: "Glove Integrity Tester", brand: "Neuronbc", tone: "device", icon: "📟" },
-  { id: "disinfectant-test-kit", name: "ชุดทดสอบปริมาณน้ำยาพ่นฆ่าเชื้อ", nameEn: "Disinfectant concentration test kit", brand: "Sanosil", tone: "kit", icon: "🧪" },
-  { id: "sanosil-5kg", name: "น้ำยาพ่นฆ่าเชื้อ ขนาด 5 kg", nameEn: "Sanosil S015 disinfectant — 5 kg", brand: "Sanosil", tone: "liquid", icon: "🛢️" },
-  { id: "sanosil-1kg", name: "น้ำยาพ่นฆ่าเชื้อ ขนาด 1 kg", nameEn: "Sanosil S015 disinfectant — 1 kg", brand: "Sanosil", tone: "liquid", icon: "🧴" },
-  { id: "qjet-ct20", name: "เครื่องพ่นฆ่าเชื้อด้วยระบบ Aerosol", nameEn: "Q-Jet CT20 aerosol disinfection system", brand: "Sanosil", tone: "device", icon: "💨" },
-  { id: "qjet-ct10", name: "เครื่องพ่นฆ่าเชื้อด้วยระบบ Aerosol", nameEn: "Q-Jet CT10 portable aerosol fogger", brand: "Sanosil", tone: "device", icon: "💨" },
+  { id: "glove-integrity", name: "เครื่องทดสอบการรั่วของถุงมือ", nameEn: "Glove Integrity Tester", brand: "Neuronbc", tone: "device", icon: "📟" ,image: "/products/297844.jpg"},
+  { id: "disinfectant-test-kit", name: "ชุดทดสอบปริมาณน้ำยาพ่นฆ่าเชื้อ", nameEn: "Disinfectant concentration test kit", brand: "Sanosil", tone: "kit", icon: "🧪",image: "/products/297842.jpg"},
+  { id: "sanosil-5kg", name: "น้ำยาพ่นฆ่าเชื้อ ขนาด 5 kg", nameEn: "Sanosil S015 disinfectant — 5 kg", brand: "Sanosil", tone: "liquid", icon: "🛢️",image: "/products/297840.jpg"},
+  { id: "sanosil-1kg", name: "น้ำยาพ่นฆ่าเชื้อ ขนาด 1 kg", nameEn: "Sanosil S015 disinfectant — 1 kg", brand: "Sanosil", tone: "liquid", icon: "🧴" ,image: "/products/297837.jpg"},
+  { id: "qjet-ct20", name: "เครื่องพ่นฆ่าเชื้อด้วยระบบ Aerosol", nameEn: "Q-Jet CT20 aerosol disinfection system", brand: "Sanosil", tone: "device", icon: "💨" ,image: "/products/297476.jpg"},
+  { id: "qjet-ct10", name: "เครื่องพ่นฆ่าเชื้อด้วยระบบ Aerosol", nameEn: "Q-Jet CT10 portable aerosol fogger", brand: "Sanosil", tone: "device", icon: "💨" ,image: "/products/297849.jpg"},
 ];
 
 // Placeholder contact info — update with real SPD Biotech details.
