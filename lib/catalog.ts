@@ -219,6 +219,6 @@ export const PRODUCTS: Product[] = [
 export const CONTACT = {
   email: "info@spdbiotech.com",
   phone: "+66 2 000 0000",
-  address: "Phra Khanong, Bangkok, Thailand",
+  address: "79 Soi Srinakarin 40, Nong Bon, Prawet, Bangkok 10250",
   website: "spdbiotech.com",
 };

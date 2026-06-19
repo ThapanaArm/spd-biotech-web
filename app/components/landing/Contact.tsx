@@ -81,6 +81,24 @@ export default function Contact() {
             </div>
           </form>
         </div>
+        <div className="map-wrap">
+          <iframe
+            src="https://maps.google.com/maps?q=SPD+BIOTECH+CO+LTD+79+Srinakarin+40+Nong+Bon+Prawet+Bangkok&t=&z=17&ie=UTF8&iwloc=&output=embed"
+            className="map-frame"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="SPD Biotech location"
+          />
+          <a
+            href="https://maps.app.goo.gl/LZYWXpmkYRNDrspPA"
+            target="_blank"
+            rel="noreferrer"
+            className="map-open-link"
+          >
+            📍 Open in Google Maps
+          </a>
+        </div>
       </div>
     </section>
   );
