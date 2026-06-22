@@ -1,8 +1,7 @@
 // ============================================================
-// SPD Biotech — catalog data
-// Sourced from the live spdbiotech.com product catalog (partner
-// brands + product families). Contact details below are PLACEHOLDERS
-// for the prototype — replace with the real company details.
+// SPD Biotech — static catalog data (solutions, brands, team…).
+// Products and news now live in Supabase — see lib/data.ts.
+// Contact details below are PLACEHOLDERS for the prototype.
 // ============================================================
 
 export type Solution = {
@@ -188,32 +187,53 @@ export const TEAM: TeamMember[] = [
   { name: "Wilasinee Saeneab", title: "Team Member" },
 ];
 
+// Product categories in display order — mirrors the live spdbiotech.com product groups.
+export const PRODUCT_CATEGORIES = [
+  "Single-Use & Tubing",
+  "Integrity Testing",
+  "Disinfection & Sanitation",
+  "Environmental Monitoring",
+] as const;
+
+export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number];
+
+export const PRODUCT_TONES = ["tube", "device", "liquid", "kit", "air"] as const;
+export type ProductTone = (typeof PRODUCT_TONES)[number];
+
+export const NEWS_ACCENTS = ["green", "teal", "blue", "purple", "cyan", "orange"] as const;
+export type NewsAccent = (typeof NEWS_ACCENTS)[number];
+
+export type ProductSpec = { label: string; value: string };
+
+// Product — stored in Supabase (public.products). See lib/data.ts.
 export type Product = {
   id: string;
   name: string;
   nameEn?: string;
   brand?: string;
-  tone: "tube" | "device" | "liquid" | "kit" | "air";
+  category: string;
+  tone: ProductTone;
   icon: string;
-  // Real product photo under /public. Falls back to the icon placeholder
-  // if the file is missing, so it's safe to set before the file exists.
   image?: string;
+  // Detail-page content
+  tagline?: string;
+  description?: string;
+  specs?: ProductSpec[];
+  sortOrder?: number;
 };
 
-// Featured products ("สินค้าแนะนำ") shown on the homepage.
-export const PRODUCTS: Product[] = [
-  { id: "imaflow", name: "Imaflow", nameEn: "Platinum-cured silicone transparent tube", brand: "Ami Polymer", tone: "tube", icon: "➿" ,image: "/products/297849.jpg"},
-  { id: "imapure", name: "Imapure", nameEn: "Platinum-cured silicone tube — regulatory market", brand: "Ami Polymer", tone: "tube", icon: "➿",image: "/products/297848.jpg"},
-  { id: "imapex", name: "Imapex", nameEn: "Peroxide-cured silicone tube", brand: "Ami Polymer", tone: "tube", icon: "➿",image: "/products/297847.jpg"},
-  { id: "air-sampler", name: "Air Sampler", nameEn: "Microbial air sampler", tone: "air", icon: "🌬️",image: "/products/297846.jpg"},
-  { id: "filter-integrity", name: "เครื่องทดสอบการรั่วของไส้กรอง", nameEn: "Filter Integrity Tester", brand: "Neuronbc", tone: "device", icon: "📟", image: "/products/filter-integrity-tester.jpg" },
-  { id: "glove-integrity", name: "เครื่องทดสอบการรั่วของถุงมือ", nameEn: "Glove Integrity Tester", brand: "Neuronbc", tone: "device", icon: "📟" ,image: "/products/297844.jpg"},
-  { id: "disinfectant-test-kit", name: "ชุดทดสอบปริมาณน้ำยาพ่นฆ่าเชื้อ", nameEn: "Disinfectant concentration test kit", brand: "Sanosil", tone: "kit", icon: "🧪",image: "/products/297842.jpg"},
-  { id: "sanosil-5kg", name: "น้ำยาพ่นฆ่าเชื้อ ขนาด 5 kg", nameEn: "Sanosil S015 disinfectant — 5 kg", brand: "Sanosil", tone: "liquid", icon: "🛢️",image: "/products/297840.jpg"},
-  { id: "sanosil-1kg", name: "น้ำยาพ่นฆ่าเชื้อ ขนาด 1 kg", nameEn: "Sanosil S015 disinfectant — 1 kg", brand: "Sanosil", tone: "liquid", icon: "🧴" ,image: "/products/297837.jpg"},
-  { id: "qjet-ct20", name: "เครื่องพ่นฆ่าเชื้อด้วยระบบ Aerosol", nameEn: "Q-Jet CT20 aerosol disinfection system", brand: "Sanosil", tone: "device", icon: "💨" ,image: "/products/297476.jpg"},
-  { id: "qjet-ct10", name: "เครื่องพ่นฆ่าเชื้อด้วยระบบ Aerosol", nameEn: "Q-Jet CT10 portable aerosol fogger", brand: "Sanosil", tone: "device", icon: "💨" ,image: "/products/297849.jpg"},
-];
+// News / article — stored in Supabase (public.news). See lib/data.ts.
+export type NewsArticle = {
+  id?: string;
+  slug: string;
+  category: string;
+  date: string; // pre-formatted display date (avoids hydration locale mismatch)
+  title: string;
+  excerpt: string;
+  icon: string;
+  accent: NewsAccent;
+  sortOrder?: number;
+};
 
 // Placeholder contact info — update with real SPD Biotech details.
 export const CONTACT = {

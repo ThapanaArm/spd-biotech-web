@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function ScrollReveal() {
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>(
-      ".solution-card, .value-card, .about-stat, .team-card, .team-featured, .product-card"
+      ".solution-card, .value-card, .about-stat, .team-card, .team-featured, .product-card, .news-card"
     );
     const observer = new IntersectionObserver(
       (entries) => {
