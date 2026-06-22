@@ -103,13 +103,17 @@ export default function ProductForm({ product }: { product?: Product }) {
           <input
             id="id"
             value={id}
-            onChange={(e) => setId(e.target.value)}
+            onChange={(e) =>
+              setId(e.target.value.toLowerCase().replace(/[^a-z0-9-]+/g, "-"))
+            }
             disabled={isEdit}
             placeholder="เช่น qjet-ct10"
             required
           />
           <span className="hint">
-            {isEdit ? "แก้ไข ID ไม่ได้" : "ใช้ใน URL /product/<id> — อังกฤษพิมพ์เล็ก-ขีดกลาง"}
+            {isEdit
+              ? "แก้ไข ID ไม่ได้"
+              : "ใช้ใน URL /product/<id> — อังกฤษพิมพ์เล็ก/ตัวเลข/ขีดกลางเท่านั้น (เว้นวรรค→ขีดกลางอัตโนมัติ)"}
           </span>
         </div>
         <div className="field">
@@ -235,10 +239,14 @@ export default function ProductForm({ product }: { product?: Product }) {
         <label htmlFor="desc">รายละเอียด</label>
         <textarea
           id="desc"
-          rows={3}
+          rows={6}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        <span className="hint">
+          ขึ้นต้นบรรทัดด้วย “- ” = หัวข้อย่อย (bullet) · บรรทัดธรรมดา = ขึ้นบรรทัดใหม่ ·
+          ครอบ **ข้อความ** หรือ &lt;b&gt;ข้อความ&lt;/b&gt; = ตัวหนา
+        </span>
       </div>
 
       <div className="field">
