@@ -201,8 +201,19 @@ ul { list-style: none; }
 .stat span { font-size: 12px; color: var(--muted); }
 .stat-div { width: 1px; height: 34px; background: var(--border); }
 
-/* Hero visual — solutions panel */
+/* Hero visual — solutions panel / photo */
 .hero-visual { display: flex; justify-content: center; }
+.hero-photo {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  box-shadow: var(--shadow-lg);
+  animation: floatUp 4s ease-in-out infinite alternate;
+}
+.hero-photo img { width: 100%; height: auto; display: block; aspect-ratio: 3 / 2; object-fit: cover; }
 .solutions-card {
   width: 100%;
   max-width: 440px;

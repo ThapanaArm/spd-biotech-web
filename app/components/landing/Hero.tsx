@@ -1,10 +1,21 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { SOLUTIONS } from "@/lib/catalog";
 import { useLang } from "@/app/LangContext";
 
 export default function Hero() {
   const { t } = useLang();
+  const [imgOk, setImgOk] = useState(true);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // The error event can fire before hydration attaches onError, so re-check
+  // the already-loaded state on mount.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth === 0) setImgOk(false);
+  }, []);
+
   return (
     <section className="hero">
       <div className="hero-bg" />
@@ -29,20 +40,34 @@ export default function Hero() {
           </div>
         </div>
         <div className="hero-visual">
-          <div className="solutions-card">
-            <div className="solutions-card-head">
-              <h3>{t.hero.cardTitle}</h3>
-              <span className="pill">{t.hero.cardPill}</span>
+          {imgOk ? (
+            <div className="hero-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                ref={imgRef}
+                src="/hero.jpg"
+                alt={`${t.hero.titleA}${t.hero.titleB}`}
+                onError={() => setImgOk(false)}
+              />
             </div>
-            <div className="sc-list">
-              {SOLUTIONS.map((s) => (
-                <div className="sc-item" key={s.slug}>
-                  <span className="ic">{s.icon}</span>
-                  <span className="tx">{t.solutions.items[s.slug]?.title ?? s.title}</span>
-                </div>
-              ))}
+          ) : (
+            <div className="solutions-card">
+              <div className="solutions-card-head">
+                <h3>{t.hero.cardTitle}</h3>
+                <span className="pill">{t.hero.cardPill}</span>
+              </div>
+              <div className="sc-list">
+                {SOLUTIONS.map((s) => (
+                  <div className="sc-item" key={s.slug}>
+                    <span className="ic">{s.icon}</span>
+                    <span className="tx">
+                      {t.solutions.items[s.slug]?.title ?? s.title}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
