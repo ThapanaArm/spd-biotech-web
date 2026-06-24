@@ -33,11 +33,11 @@ export default function Footer() {
           <div>
             <h4>Products</h4>
             <ul>
-              <li><a href="#products">Silicone tubing</a></li>
-              <li><a href="#products">Air sampler</a></li>
-              <li><a href="#products">Integrity testers</a></li>
-              <li><a href="#products">Disinfectants</a></li>
-              <li><a href="#products">Aerosol foggers</a></li>
+              <li><a href="/product">Peristaltic pump</a></li>
+              <li><a href="/product">Filter integrity tester</a></li>
+              <li><a href="/product">Glove integrity tester</a></li>
+              <li><a href="/product">Surface disinfection</a></li>
+              <li><a href="/product">Tubing / Gasket</a></li>
             </ul>
           </div>
           <div>

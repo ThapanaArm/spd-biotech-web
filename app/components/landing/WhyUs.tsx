@@ -1,10 +1,32 @@
-import { VALUE_PROPS } from "@/lib/catalog";
+import { VALUE_PROPS, STATS, COMPANY } from "@/lib/catalog";
 
 export default function WhyUs() {
   return (
     <section className="whyus" id="why">
       <div className="container">
-        <div className="section-header">
+        {/* Company intro (moved here from the former About section) */}
+        <div className="about-grid">
+          <div className="about-copy">
+            <span className="eyebrow">About SPD Biotech</span>
+            <h2>{COMPANY.nameTh}</h2>
+            <p className="about-lead">{COMPANY.descriptionTh}</p>
+            <div className="about-meta">
+              <span className="about-meta-label">หมวดธุรกิจ</span>
+              <span className="about-meta-value">{COMPANY.businessCategoryTh}</span>
+            </div>
+          </div>
+          <div className="about-stats">
+            {STATS.map((s) => (
+              <div className="about-stat" key={s.label}>
+                <strong>{s.value}</strong>
+                <span>{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Why SPD value props */}
+        <div className="section-header" style={{ marginTop: 72 }}>
           <span className="eyebrow">Why SPD Biotech</span>
           <h2>More than a supplier</h2>
           <p>

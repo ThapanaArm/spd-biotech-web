@@ -189,10 +189,15 @@ export const TEAM: TeamMember[] = [
 
 // Product categories in display order — mirrors the live spdbiotech.com product groups.
 export const PRODUCT_CATEGORIES = [
-  "Single-Use & Tubing",
-  "Integrity Testing",
-  "Disinfection & Sanitation",
-  "Environmental Monitoring",
+  "Dispensing Powder pump / Peristaltic pump",
+  "Filter",
+  "Filter Integrity Tester",
+  "Filter Press / Filter Housing / Filter sheet",
+  "Glove Integrity Tester",
+  "Form Fill Seal System",
+  "Surface Disinfection",
+  "Tubing / Gasket",
+  "Washer Disinfector / Steam Sterilizer",
 ] as const;
 
 export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number];

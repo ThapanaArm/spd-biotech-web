@@ -113,7 +113,7 @@ export default async function ProductDetailPage({
           <nav className="breadcrumb" aria-label="Breadcrumb">
             <Link href="/">หน้าแรก</Link>
             <span className="sep">/</span>
-            <a href="/#products">{product.category}</a>
+            <a href="/product">{product.category}</a>
             <span className="sep">/</span>
             <span className="current">{product.name}</span>
           </nav>
@@ -150,7 +150,7 @@ export default async function ProductDetailPage({
                 <a href="/#contact" className="btn btn-primary">
                   ขอใบเสนอราคา
                 </a>
-                <a href="/#products" className="btn btn-outline">
+                <a href="/product" className="btn btn-outline">
                   ← กลับไปดูสินค้าทั้งหมด
                 </a>
               </div>
