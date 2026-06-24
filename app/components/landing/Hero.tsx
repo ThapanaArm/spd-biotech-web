@@ -45,7 +45,7 @@ export default function Hero() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 ref={imgRef}
-                src="/hero.jpg"
+                src="/hero.png"
                 alt={`${t.hero.titleA}${t.hero.titleB}`}
                 onError={() => setImgOk(false)}
               />
