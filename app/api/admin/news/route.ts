@@ -31,6 +31,8 @@ export async function POST(req: Request) {
     excerpt: body.excerpt || null,
     icon: body.icon || "📰",
     accent: body.accent || "green",
+    image: body.image || null,
+    content: body.content || null,
     sort_order: Number.isFinite(Number(body.sortOrder)) ? Number(body.sortOrder) : 0,
   };
 

@@ -2,7 +2,6 @@ import Navbar from "./components/landing/Navbar";
 import Hero from "./components/landing/Hero";
 import Solutions from "./components/landing/Solutions";
 import WhyUs from "./components/landing/WhyUs";
-import Team from "./components/landing/Team";
 import News from "./components/landing/News";
 import Contact from "./components/landing/Contact";
 import Footer from "./components/landing/Footer";
@@ -18,7 +17,6 @@ export default function Home() {
       <Hero />
       <WhyUs />
       <Solutions />
-      <Team />
       <News />
       <Contact />
       <Footer />

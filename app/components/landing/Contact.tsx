@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { CONTACT } from "@/lib/catalog";
+import { useLang } from "@/app/LangContext";
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
+  const { t } = useLang();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,12 +20,9 @@ export default function Contact() {
       <div className="container">
         <div className="contact-grid">
           <div className="contact-info">
-            <span className="eyebrow">Get in touch</span>
-            <h2>Tell us about your process</h2>
-            <p>
-              Share your application and our engineers will recommend the right
-              equipment, sizing and configuration — with a quotation to follow.
-            </p>
+            <span className="eyebrow">{t.contact.eyebrow}</span>
+            <h2>{t.contact.heading}</h2>
+            <p>{t.contact.body}</p>
             <div className="contact-details">
               <div className="contact-item">
                 <span className="ci-ic">📧</span>
@@ -48,36 +47,33 @@ export default function Contact() {
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-group">
-                <label>Full name</label>
-                <input type="text" placeholder="Somchai Jaidee" required />
+                <label>{t.contact.name}</label>
+                <input type="text" placeholder={t.contact.namePh} required />
               </div>
               <div className="form-group">
-                <label>Company</label>
-                <input type="text" placeholder="Your company Co., Ltd." />
+                <label>{t.contact.company}</label>
+                <input type="text" placeholder={t.contact.companyPh} />
               </div>
             </div>
             <div className="form-row">
               <div className="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="you@company.com" required />
+                <label>{t.contact.email}</label>
+                <input type="email" placeholder={t.contact.emailPh} required />
               </div>
               <div className="form-group">
-                <label>Phone</label>
-                <input type="tel" placeholder="+66 8x xxx xxxx" />
+                <label>{t.contact.phone}</label>
+                <input type="tel" placeholder={t.contact.phonePh} />
               </div>
             </div>
             <div className="form-group">
-              <label>How can we help?</label>
-              <textarea
-                rows={4}
-                placeholder="Tell us about your application — filtration, single-use, integrity testing, sterilization…"
-              />
+              <label>{t.contact.help}</label>
+              <textarea rows={4} placeholder={t.contact.helpPh} />
             </div>
             <button type="submit" className="btn btn-primary btn-block btn-lg">
-              Send enquiry
+              {t.contact.send}
             </button>
             <div className={"form-success" + (sent ? " show" : "")}>
-              ✅ Thank you — your enquiry has been received. We&apos;ll be in touch within 1 business day.
+              ✅ {t.contact.success}
             </div>
           </form>
         </div>
@@ -96,7 +92,7 @@ export default function Contact() {
             rel="noreferrer"
             className="map-open-link"
           >
-            📍 Open in Google Maps
+            📍 {t.contact.openMap}
           </a>
         </div>
       </div>

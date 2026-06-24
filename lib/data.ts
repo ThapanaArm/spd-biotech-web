@@ -25,6 +25,8 @@ type NewsRow = {
   excerpt: string | null;
   icon: string | null;
   accent: string | null;
+  image: string | null;
+  content: string | null;
   sort_order: number | null;
 };
 
@@ -55,6 +57,8 @@ function mapNews(r: NewsRow): NewsArticle {
     excerpt: r.excerpt ?? "",
     icon: r.icon ?? "📰",
     accent: (r.accent as NewsAccent) ?? "green",
+    image: r.image ?? undefined,
+    content: r.content ?? undefined,
     sortOrder: r.sort_order ?? 0,
   };
 }
@@ -98,5 +102,16 @@ export async function getNewsItem(id: string): Promise<NewsArticle | null> {
     .eq("id", id)
     .maybeSingle();
   if (error) throw new Error(`Failed to load news item: ${error.message}`);
+  return data ? mapNews(data as NewsRow) : null;
+}
+
+export async function getNewsBySlug(slug: string): Promise<NewsArticle | null> {
+  const sb = createPublicClient();
+  const { data, error } = await sb
+    .from("news")
+    .select("*")
+    .eq("slug", slug)
+    .maybeSingle();
+  if (error) throw new Error(`Failed to load news article: ${error.message}`);
   return data ? mapNews(data as NewsRow) : null;
 }

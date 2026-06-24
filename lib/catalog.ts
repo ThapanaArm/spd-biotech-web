@@ -237,6 +237,8 @@ export type NewsArticle = {
   excerpt: string;
   icon: string;
   accent: NewsAccent;
+  image?: string;
+  content?: string;
   sortOrder?: number;
 };
 

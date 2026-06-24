@@ -1,7 +1,11 @@
+"use client";
+
 import { SOLUTIONS, CONTACT } from "@/lib/catalog";
 import Logo from "./Logo";
+import { useLang } from "@/app/LangContext";
 
 export default function Footer() {
+  const { t } = useLang();
   const year = 2026;
   return (
     <footer className="footer">
@@ -14,24 +18,20 @@ export default function Footer() {
                 SPD<span className="logo-dot"> Biotech</span>
               </span>
             </div>
-            <p className="footer-about">
-              Thailand-based distributor of pharmaceutical and biopharmaceutical
-              manufacturing equipment — filtration, single-use systems, integrity
-              testing, pumping, disinfection, washing and sterilization.
-            </p>
+            <p className="footer-about">{t.footer.about}</p>
           </div>
           <div>
-            <h4>Solutions</h4>
+            <h4>{t.footer.solutions}</h4>
             <ul>
               {SOLUTIONS.map((s) => (
                 <li key={s.slug}>
-                  <a href="#solutions">{s.title}</a>
+                  <a href="#solutions">{t.solutions.items[s.slug]?.title ?? s.title}</a>
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h4>Products</h4>
+            <h4>{t.footer.products}</h4>
             <ul>
               <li><a href="/product">Peristaltic pump</a></li>
               <li><a href="/product">Filter integrity tester</a></li>
@@ -41,7 +41,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4>Contact</h4>
+            <h4>{t.footer.contact}</h4>
             <ul>
               <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
               <li><a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}>{CONTACT.phone}</a></li>
@@ -51,8 +51,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© {year} SPD Biotech Co., Ltd. All rights reserved.</span>
-          <span>Prototype landing page</span>
+          <span>© {year} SPD Biotech Co., Ltd. {t.footer.rights}</span>
+          <span>{t.footer.proto}</span>
         </div>
       </div>
     </footer>

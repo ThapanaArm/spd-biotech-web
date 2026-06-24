@@ -12,13 +12,34 @@ export default function NewsForm({ item }: { item?: NewsArticle }) {
   const [category, setCategory] = useState(item?.category ?? "");
   const [date, setDate] = useState(item?.date ?? "");
   const [title, setTitle] = useState(item?.title ?? "");
+  const [image, setImage] = useState(item?.image ?? "");
   const [excerpt, setExcerpt] = useState(item?.excerpt ?? "");
+  const [content, setContent] = useState(item?.content ?? "");
   const [icon, setIcon] = useState(item?.icon ?? "📰");
   const [accent, setAccent] = useState<string>(item?.accent ?? "green");
   const [sortOrder, setSortOrder] = useState<number>(item?.sortOrder ?? 0);
 
+  const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+
+  async function onUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    setError("");
+    const fd = new FormData();
+    fd.append("file", file);
+    const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+    setUploading(false);
+    if (res.ok) {
+      const d = await res.json();
+      setImage(d.url);
+    } else {
+      const d = await res.json().catch(() => ({}));
+      setError(d.error || "อัปโหลดรูปไม่สำเร็จ");
+    }
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -29,7 +50,9 @@ export default function NewsForm({ item }: { item?: NewsArticle }) {
       category,
       date,
       title,
+      image,
       excerpt,
+      content,
       icon,
       accent,
       sortOrder: Number(sortOrder) || 0,
@@ -62,7 +85,9 @@ export default function NewsForm({ item }: { item?: NewsArticle }) {
           <input
             id="slug"
             value={slug}
-            onChange={(e) => setSlug(e.target.value)}
+            onChange={(e) =>
+              setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]+/g, "-"))
+            }
             placeholder="เช่น thailand-lab-2026"
             required
           />
@@ -95,7 +120,7 @@ export default function NewsForm({ item }: { item?: NewsArticle }) {
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            placeholder="เช่น กิจกรรม / สินค้าใหม่ / บทความความรู้"
+            placeholder="เช่น News / Event / บทความ"
             required
           />
         </div>
@@ -105,25 +130,70 @@ export default function NewsForm({ item }: { item?: NewsArticle }) {
             id="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            placeholder="เช่น 10 มิถุนายน 2026"
+            placeholder="เช่น 29 May 2026"
             required
           />
+          <span className="hint">ใส่ปี ค.ศ. 4 หลัก เพื่อให้ตัวกรองปีทำงาน</span>
         </div>
       </div>
 
       <div className="field">
-        <label htmlFor="excerpt">เนื้อหาย่อ</label>
+        <label>รูปข่าว</label>
+        <div className="image-upload">
+          {image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img className="preview" src={image} alt="preview" />
+          ) : (
+            <span className="preview empty">{icon}</span>
+          )}
+          <div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={onUpload}
+              disabled={uploading}
+            />
+            {uploading && <p className="hint">กำลังอัปโหลด…</p>}
+            {image && (
+              <button
+                type="button"
+                className="btn btn-ghost btn-sm"
+                onClick={() => setImage("")}
+              >
+                ลบรูป
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="field">
+        <label htmlFor="excerpt">เนื้อหาย่อ (แสดงบนการ์ด)</label>
         <textarea
           id="excerpt"
-          rows={3}
+          rows={2}
           value={excerpt}
           onChange={(e) => setExcerpt(e.target.value)}
         />
       </div>
 
+      <div className="field">
+        <label htmlFor="content">เนื้อหาเต็ม (แสดงในหน้ารายละเอียด)</label>
+        <textarea
+          id="content"
+          rows={8}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+        <span className="hint">
+          ขึ้นต้นบรรทัดด้วย “- ” = bullet · ครอบ **ข้อความ** หรือ
+          &lt;b&gt;ข้อความ&lt;/b&gt; = ตัวหนา
+        </span>
+      </div>
+
       <div className="grid2">
         <div className="field">
-          <label htmlFor="icon">ไอคอน (emoji)</label>
+          <label htmlFor="icon">ไอคอน (emoji, ใช้เมื่อไม่มีรูป)</label>
           <input
             id="icon"
             value={icon}
@@ -131,7 +201,7 @@ export default function NewsForm({ item }: { item?: NewsArticle }) {
           />
         </div>
         <div className="field">
-          <label htmlFor="accent">สีธีมการ์ด</label>
+          <label htmlFor="accent">สีธีม (ใช้เมื่อไม่มีรูป)</label>
           <select
             id="accent"
             value={accent}
@@ -147,7 +217,7 @@ export default function NewsForm({ item }: { item?: NewsArticle }) {
       </div>
 
       <div className="form-actions">
-        <button className="btn btn-primary" type="submit" disabled={saving}>
+        <button className="btn btn-primary" type="submit" disabled={saving || uploading}>
           {saving ? "กำลังบันทึก…" : isEdit ? "บันทึกการแก้ไข" : "เพิ่มข่าว"}
         </button>
         <button
