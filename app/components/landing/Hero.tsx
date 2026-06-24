@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { SOLUTIONS } from "@/lib/catalog";
 import { useLang } from "@/app/LangContext";
 
+const FEATURE_ICONS = ["🛡️", "⚗️", "🌿"];
+
 export default function Hero() {
   const { t } = useLang();
   const [imgOk, setImgOk] = useState(true);
@@ -22,9 +24,6 @@ export default function Hero() {
       <div className="hero-grid-lines" />
       <div className="container">
         <div className="hero-content">
-          <div className="hero-badge">
-            <span className="dot" /> {t.hero.badge}
-          </div>
           <h1 className="hero-title">
             {t.hero.titleA}
             <span className="gradient-text">{t.hero.titleB}</span>
@@ -68,6 +67,19 @@ export default function Hero() {
               </div>
             </div>
           )}
+        </div>
+        <div className="hero-features">
+          {t.hero.features.map((f, i) => (
+            <div className="hero-feature" key={i}>
+              <span className="hf-icon" aria-hidden="true">
+                {FEATURE_ICONS[i]}
+              </span>
+              <div>
+                <strong>{f.title}</strong>
+                <span>{f.sub}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

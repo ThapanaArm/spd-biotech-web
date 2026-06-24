@@ -20,6 +20,17 @@ const en = {
     talk: "Talk to an engineer →",
     cardTitle: "Process solution areas",
     cardPill: "6 categories",
+    features: [
+      { title: "High Quality", sub: "Certified & reliable" },
+      { title: "Advanced Technology", sub: "Cutting-edge innovation" },
+      { title: "Sustainable Solutions", sub: "For a better tomorrow" },
+    ],
+    cards: {
+      "fluid-management": "Reliable transfer and control of critical fluids.",
+      filtration: "High-performance filtration for pure results.",
+      "single-use-tubing": "Flexible, efficient, and contamination-free.",
+      disinfection: "Ensure safety, sterility, and compliance.",
+    } as Record<string, string>,
   },
   why: {
     aboutEyebrow: "About SPD Biotech",
@@ -145,6 +156,17 @@ const th: Dictionary = {
     talk: "ปรึกษาวิศวกร →",
     cardTitle: "กลุ่มโซลูชันกระบวนการผลิต",
     cardPill: "6 หมวด",
+    features: [
+      { title: "คุณภาพสูง", sub: "ได้รับการรับรอง เชื่อถือได้" },
+      { title: "เทคโนโลยีล้ำสมัย", sub: "นวัตกรรมล่าสุด" },
+      { title: "โซลูชันยั่งยืน", sub: "เพื่ออนาคตที่ดีกว่า" },
+    ],
+    cards: {
+      "fluid-management": "ลำเลียงและควบคุมของเหลวสำคัญได้อย่างแม่นยำ",
+      filtration: "การกรองประสิทธิภาพสูงเพื่อผลลัพธ์ที่บริสุทธิ์",
+      "single-use-tubing": "ยืดหยุ่น มีประสิทธิภาพ ปลอดการปนเปื้อน",
+      disinfection: "มั่นใจความปลอดภัย ปลอดเชื้อ และเป็นไปตามมาตรฐาน",
+    },
   },
   why: {
     aboutEyebrow: "เกี่ยวกับ SPD Biotech",
