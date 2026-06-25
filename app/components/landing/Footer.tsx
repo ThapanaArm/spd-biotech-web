@@ -4,6 +4,9 @@ import { SOLUTIONS, CONTACT } from "@/lib/catalog";
 import Logo from "./Logo";
 import { useLang } from "@/app/LangContext";
 
+const phoneHref = (phone: string) =>
+  `tel:${phone.replace(/\s|ต่อ\s*\d+/g, "")}`;
+
 export default function Footer() {
   const { t } = useLang();
   const year = 2026;
@@ -43,8 +46,12 @@ export default function Footer() {
           <div>
             <h4>{t.footer.contact}</h4>
             <ul>
-              <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
-              <li><a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}>{CONTACT.phone}</a></li>
+              {CONTACT.emails.map((email) => (
+                <li key={email}><a href={`mailto:${email}`}>{email}</a></li>
+              ))}
+              {CONTACT.phones.map((phone) => (
+                <li key={phone}><a href={phoneHref(phone)}>{phone}</a></li>
+              ))}
               <li>{CONTACT.address}</li>
               <li><a href={`https://${CONTACT.website}`}>{CONTACT.website}</a></li>
             </ul>
@@ -52,6 +59,17 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <span>© {year} SPD Biotech Co., Ltd. {t.footer.rights}</span>
+          <nav className="footer-legal" aria-label="Legal links">
+            <a href="https://www.bis-group.com/en/terms-and-conditions" target="_blank" rel="noreferrer">
+              Terms and Conditions
+            </a>
+            <a href="https://www.bis-group.com/en/privacy-notice" target="_blank" rel="noreferrer">
+              Privacy Notice
+            </a>
+            <a href="https://www.bis-group.com/en/cookie-policy" target="_blank" rel="noreferrer">
+              Cookie Policy
+            </a>
+          </nav>
           <span>{t.footer.proto}</span>
         </div>
       </div>

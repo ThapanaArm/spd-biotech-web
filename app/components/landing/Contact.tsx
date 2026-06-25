@@ -4,6 +4,9 @@ import { useState } from "react";
 import { CONTACT } from "@/lib/catalog";
 import { useLang } from "@/app/LangContext";
 
+const phoneHref = (phone: string) =>
+  `tel:${phone.replace(/\s|ต่อ\s*\d+/g, "")}`;
+
 export default function Contact() {
   const [sent, setSent] = useState(false);
   const { t } = useLang();
@@ -26,11 +29,23 @@ export default function Contact() {
             <div className="contact-details">
               <div className="contact-item">
                 <span className="ci-ic">📧</span>
-                <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+                <div className="contact-list">
+                  {CONTACT.emails.map((email) => (
+                    <a href={`mailto:${email}`} key={email}>
+                      {email}
+                    </a>
+                  ))}
+                </div>
               </div>
               <div className="contact-item">
                 <span className="ci-ic">📞</span>
-                <a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}>{CONTACT.phone}</a>
+                <div className="contact-list">
+                  {CONTACT.phones.map((phone) => (
+                    <a href={phoneHref(phone)} key={phone}>
+                      {phone}
+                    </a>
+                  ))}
+                </div>
               </div>
               <div className="contact-item">
                 <span className="ci-ic">📍</span>

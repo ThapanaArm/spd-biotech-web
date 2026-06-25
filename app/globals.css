@@ -105,14 +105,14 @@ ul { list-style: none; }
   max-width: 1180px;
   margin: 0 auto;
 }
-.logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--heading); }
+.logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 18px; color: var(--heading); }
 .logo-mark { display: inline-flex; align-items: center; line-height: 0; }
-.logo-mark svg { display: block; }
-/* footer sits on a dark panel — give the green emblem a light disc to read on */
+.logo-mark img { display: block; width: auto; height: 56px; object-fit: contain; }
+/* official PNG logo already includes its own transparent/outlined treatment */
 .logo-mark-ondark {
-  background: #fff;
-  border-radius: 50%;
-  padding: 2px;
+  background: rgba(255, 255, 255, .96);
+  border-radius: 8px;
+  padding: 4px;
 }
 .logo-text { letter-spacing: -.01em; }
 .logo-dot { color: var(--primary); }
@@ -173,7 +173,7 @@ ul { list-style: none; }
   padding: 0 32px;
 }
 .hero-content {
-  max-width: 720px;
+  max-width: 760px;
 }
 .hero-badge {
   display: inline-flex;
@@ -191,8 +191,8 @@ ul { list-style: none; }
 }
 .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
 .hero-title {
-  max-width: 720px;
-  font-size: clamp(48px, 5.2vw, 84px);
+  max-width: 760px;
+  font-size: clamp(42px, 4.65vw, 76px);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: 0;
@@ -209,10 +209,10 @@ ul { list-style: none; }
   background-clip: text;
 }
 .hero-desc {
-  font-size: clamp(18px, 1.2vw, 23px);
+  font-size: clamp(17px, 1.12vw, 21px);
   line-height: 1.55;
   color: var(--muted);
-  max-width: 620px;
+  max-width: 700px;
   margin-bottom: 34px;
 }
 .hero-actions { display: flex; gap: 22px; flex-wrap: wrap; margin-bottom: 34px; }
@@ -454,6 +454,7 @@ ul { list-style: none; }
 }
 .contact-item a { color: var(--text); transition: color .2s; }
 .contact-item a:hover { color: var(--primary); }
+.contact-list { display: flex; flex-direction: column; gap: 5px; line-height: 1.45; }
 .map-wrap { margin-top: 48px; position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
 .map-frame { width: 100%; height: 380px; border: 0; display: block; }
 .map-open-link { position: absolute; bottom: 12px; right: 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-size: 13px; font-weight: 600; color: var(--text); text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,.15); transition: color .2s; }
@@ -764,6 +765,7 @@ ul { list-style: none; }
   margin-bottom: 40px;
 }
 .footer .logo { color: #fff; margin-bottom: 14px; }
+.footer .logo-mark img { height: 56px; }
 .footer-about { font-size: 13px; color: #93a4b8; max-width: 320px; }
 .footer h4 { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 14px; text-transform: uppercase; letter-spacing: .08em; }
 .footer ul { display: flex; flex-direction: column; gap: 9px; }
@@ -780,6 +782,16 @@ ul { list-style: none; }
 }
 .footer-bottom a { color: #93a4b8; transition: color .2s; }
 .footer-bottom a:hover { color: #fff; }
+.footer-legal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.footer-legal a {
+  white-space: nowrap;
+}
 
 /* ── Responsive ── */
 @media (max-width: 960px) {
@@ -857,5 +869,6 @@ ul { list-style: none; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .footer-legal { gap: 10px 16px; }
   .about-stats { grid-template-columns: 1fr 1fr; }
 }

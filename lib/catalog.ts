@@ -244,8 +244,8 @@ export type NewsArticle = {
 
 // Placeholder contact info — update with real SPD Biotech details.
 export const CONTACT = {
-  email: "info@spdbiotech.com",
-  phone: "+66 2 000 0000",
+  emails: ["sales@spdbiotech.com", "support@spdbiotech.com", "ps@spdbiotech.com"],
+  phones: ["+66 21854333 ต่อ 2202", "+66 986017542", "+66 955594658"],
   address: "79 Soi Srinakarin 40, Nong Bon, Prawet, Bangkok 10250",
   website: "spdbiotech.com",
 };
