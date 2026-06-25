@@ -64,54 +64,74 @@ function mapNews(r: NewsRow): NewsArticle {
 }
 
 export async function getProducts(): Promise<Product[]> {
-  const sb = createPublicClient();
-  const { data, error } = await sb
-    .from("products")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  if (error) throw new Error(`Failed to load products: ${error.message}`);
-  return ((data as ProductRow[] | null) ?? []).map(mapProduct);
+  try {
+    const sb = createPublicClient();
+    const { data, error } = await sb
+      .from("products")
+      .select("*")
+      .order("sort_order", { ascending: true });
+    if (error) throw new Error(`Failed to load products: ${error.message}`);
+    return ((data as ProductRow[] | null) ?? []).map(mapProduct);
+  } catch {
+    return [];
+  }
 }
 
 export async function getProduct(id: string): Promise<Product | null> {
-  const sb = createPublicClient();
-  const { data, error } = await sb
-    .from("products")
-    .select("*")
-    .eq("id", id)
-    .maybeSingle();
-  if (error) throw new Error(`Failed to load product: ${error.message}`);
-  return data ? mapProduct(data as ProductRow) : null;
+  try {
+    const sb = createPublicClient();
+    const { data, error } = await sb
+      .from("products")
+      .select("*")
+      .eq("id", id)
+      .maybeSingle();
+    if (error) throw new Error(`Failed to load product: ${error.message}`);
+    return data ? mapProduct(data as ProductRow) : null;
+  } catch {
+    return null;
+  }
 }
 
 export async function getNews(): Promise<NewsArticle[]> {
-  const sb = createPublicClient();
-  const { data, error } = await sb
-    .from("news")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  if (error) throw new Error(`Failed to load news: ${error.message}`);
-  return ((data as NewsRow[] | null) ?? []).map(mapNews);
+  try {
+    const sb = createPublicClient();
+    const { data, error } = await sb
+      .from("news")
+      .select("*")
+      .order("sort_order", { ascending: true });
+    if (error) throw new Error(`Failed to load news: ${error.message}`);
+    return ((data as NewsRow[] | null) ?? []).map(mapNews);
+  } catch {
+    return [];
+  }
 }
 
 export async function getNewsItem(id: string): Promise<NewsArticle | null> {
-  const sb = createPublicClient();
-  const { data, error } = await sb
-    .from("news")
-    .select("*")
-    .eq("id", id)
-    .maybeSingle();
-  if (error) throw new Error(`Failed to load news item: ${error.message}`);
-  return data ? mapNews(data as NewsRow) : null;
+  try {
+    const sb = createPublicClient();
+    const { data, error } = await sb
+      .from("news")
+      .select("*")
+      .eq("id", id)
+      .maybeSingle();
+    if (error) throw new Error(`Failed to load news item: ${error.message}`);
+    return data ? mapNews(data as NewsRow) : null;
+  } catch {
+    return null;
+  }
 }
 
 export async function getNewsBySlug(slug: string): Promise<NewsArticle | null> {
-  const sb = createPublicClient();
-  const { data, error } = await sb
-    .from("news")
-    .select("*")
-    .eq("slug", slug)
-    .maybeSingle();
-  if (error) throw new Error(`Failed to load news article: ${error.message}`);
-  return data ? mapNews(data as NewsRow) : null;
+  try {
+    const sb = createPublicClient();
+    const { data, error } = await sb
+      .from("news")
+      .select("*")
+      .eq("slug", slug)
+      .maybeSingle();
+    if (error) throw new Error(`Failed to load news article: ${error.message}`);
+    return data ? mapNews(data as NewsRow) : null;
+  } catch {
+    return null;
+  }
 }
