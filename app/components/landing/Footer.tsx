@@ -1,6 +1,6 @@
 "use client";
 
-import { SOLUTIONS, CONTACT } from "@/lib/catalog";
+import { CONTACT } from "@/lib/catalog";
 import Logo from "./Logo";
 import { useLang } from "@/app/LangContext";
 
@@ -10,6 +10,12 @@ const phoneHref = (phone: string) =>
 export default function Footer() {
   const { t } = useLang();
   const year = 2026;
+  const contactEmails = [
+    { label: "Sales Department", email: CONTACT.emails[0] },
+    { label: "Customer Support", email: CONTACT.emails[1] },
+    { label: "Product Specialist", email: CONTACT.emails[2] },
+  ].filter((item) => item.email);
+
   return (
     <footer className="footer">
       <div className="container">
@@ -21,39 +27,25 @@ export default function Footer() {
                 SPD<span className="logo-dot"> Biotech</span>
               </span>
             </div>
-            <p className="footer-about">{t.footer.about}</p>
-          </div>
-          <div>
-            <h4>{t.footer.solutions}</h4>
-            <ul>
-              {SOLUTIONS.map((s) => (
-                <li key={s.slug}>
-                  <a href="#solutions">{t.solutions.items[s.slug]?.title ?? s.title}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4>{t.footer.products}</h4>
-            <ul>
-              <li><a href="/product">Peristaltic pump</a></li>
-              <li><a href="/product">Filter integrity tester</a></li>
-              <li><a href="/product">Glove integrity tester</a></li>
-              <li><a href="/product">Surface disinfection</a></li>
-              <li><a href="/product">Tubing / Gasket</a></li>
-            </ul>
+            <p className="footer-address">{CONTACT.address}</p>
           </div>
           <div>
             <h4>{t.footer.contact}</h4>
             <ul>
-              {CONTACT.emails.map((email) => (
-                <li key={email}><a href={`mailto:${email}`}>{email}</a></li>
-              ))}
               {CONTACT.phones.map((phone) => (
                 <li key={phone}><a href={phoneHref(phone)}>{phone}</a></li>
               ))}
-              <li>{CONTACT.address}</li>
               <li><a href={`https://${CONTACT.website}`}>{CONTACT.website}</a></li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              {contactEmails.map(({ label, email }) => (
+                <li key={email} className="footer-contact-line">
+                  <span>{label}</span>
+                  <a href={`mailto:${email}`}>{email}</a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -70,7 +62,6 @@ export default function Footer() {
               Cookie Policy
             </a>
           </nav>
-          <span>{t.footer.proto}</span>
         </div>
       </div>
     </footer>

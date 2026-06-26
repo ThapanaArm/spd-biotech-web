@@ -13,9 +13,9 @@ const en = {
   },
   hero: {
     badge: "Pharmaceutical & biopharma equipment · Thailand",
-    titleA: "Empowering Biotechnology",
-    titleB: "& Pharmaceutical Innovation",
-    desc: "Delivering innovative laboratory equipment, consumables, engineering services, and scientific solutions for biotechnology, pharmaceutical, and life science industries.",
+    titleA: "Advancing Biotech",
+    titleB: "& Pharma Solutions",
+    desc: "Trusted provider of lab equipment, consumables, engineering services, and scientific solutions.",
     explore: "Explore Solutions",
     talk: "Talk to an engineer →",
     cardTitle: "Process solution areas",
@@ -127,7 +127,7 @@ const en = {
   },
   footer: {
     about:
-      "Thailand-based distributor of pharmaceutical and biopharmaceutical manufacturing equipment — filtration, single-use systems, integrity testing, pumping, disinfection, washing and sterilization.",
+      "SPD Biotech is committed to supporting Thailand's biotechnology and pharmaceutical industries with trusted lab equipment, consumables, engineering services, and scientific solutions.",
     solutions: "Solutions",
     products: "Products",
     contact: "Contact",
@@ -261,7 +261,7 @@ const th: Dictionary = {
   },
   footer: {
     about:
-      "ผู้จัดจำหน่ายอุปกรณ์การผลิตยาและไบโอเทคในประเทศไทย — การกรอง, ระบบ single-use, การทดสอบความสมบูรณ์, ปั๊ม, การฆ่าเชื้อ, การล้างและสเตอริไลซ์",
+      "SPD Biotech มุ่งสนับสนุนอุตสาหกรรมเทคโนโลยีชีวภาพและเภสัชกรรมในประเทศไทย ด้วยเครื่องมือห้องปฏิบัติการ วัสดุสิ้นเปลือง บริการวิศวกรรม และโซลูชันทางวิทยาศาสตร์ที่เชื่อถือได้",
     solutions: "โซลูชัน",
     products: "สินค้า",
     contact: "ติดต่อ",
