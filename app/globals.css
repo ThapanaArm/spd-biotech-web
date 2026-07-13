@@ -106,6 +106,7 @@ ul { list-style: none; }
   margin: 0 auto;
 }
 .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 18px; color: var(--heading); }
+.nav .logo { transform: translateY(-4px); }
 .logo-mark { display: inline-flex; align-items: center; line-height: 0; }
 .logo-mark img { display: block; width: auto; height: 56px; object-fit: contain; }
 /* official PNG logo already includes its own transparent/outlined treatment */
