@@ -101,14 +101,14 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   gap: 32px;
-  padding: 14px 24px;
-  max-width: 1180px;
-  margin: 0 auto;
+  padding: 8px 20px;
+  max-width: none;
+  margin: 0;
 }
-.logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 18px; color: var(--heading); }
+.logo { display: flex; align-items: center; gap: 16px; font-weight: 700; font-size: 24px; color: var(--heading); }
 .nav .logo { transform: translateY(-4px); }
 .logo-mark { display: inline-flex; align-items: center; line-height: 0; }
-.logo-mark img { display: block; width: auto; height: 56px; object-fit: contain; }
+.logo-mark img { display: block; width: auto; height: 104px; object-fit: contain; }
 /* official PNG logo already includes its own transparent/outlined treatment */
 .logo-mark-ondark {
   background: rgba(255, 255, 255, .96);
@@ -137,7 +137,7 @@ ul { list-style: none; }
 .hero {
   position: relative;
   min-height: 647px;
-  padding: 84px 0 28px;
+  padding: 142px 0 28px;
   overflow: hidden;
   background: #fff;
 }
