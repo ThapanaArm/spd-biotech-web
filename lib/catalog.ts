@@ -187,20 +187,78 @@ export const TEAM: TeamMember[] = [
   { name: "Wilasinee Saeneab", title: "Team Member" },
 ];
 
-// Product categories in display order — mirrors the live spdbiotech.com product groups.
-export const PRODUCT_CATEGORIES = [
-  "Dispensing Powder pump / Peristaltic pump",
-  "Filter",
-  "Filter Integrity Tester",
-  "Filter Press / Filter Housing / Filter sheet",
-  "Glove Integrity Tester",
-  "Form Fill Seal System",
-  "Surface Disinfection",
-  "Tubing / Gasket",
-  "Washer Disinfector / Steam Sterilizer",
-] as const;
+// ── Product taxonomy ─────────────────────────────────────────
+// Two top-level groups, each holding its own sub-categories.
+// A product's `category` field stores the SUB-CATEGORY title.
+export type CategorySub = {
+  title: string;
+  brands: string[];
+  /** Shown instead of a product grid when the sub-category has no products yet. */
+  contact?: { th: string; en: string; phone: string };
+};
 
-export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number];
+export type CategoryGroup = {
+  key: string;
+  title: string;
+  subs: CategorySub[];
+};
+
+export const PRODUCT_GROUPS: CategoryGroup[] = [
+  {
+    key: "production",
+    title: "Production Purpose",
+    subs: [
+      { title: "Autoclave / Steam Sterilizer", brands: ["SteelcoBelimed"] },
+      { title: "Washer", brands: ["SteelcoBelimed"] },
+      { title: "Upstream Fermenter / Bioreactor", brands: ["Bioengineering", "Le Pure"] },
+      { title: "Single-Use Mixer / Single-Use Bag", brands: ["Le Pure", "PharmNXT Biotech", "Ami Polymer"] },
+      { title: "GMP Cell Culture Media for Protein Base", brands: ["Lonza"] },
+      { title: "Liquid / Air Filtration", brands: ["Filtrox", "Le Pure"] },
+      { title: "Silicone Tubing / Connectors", brands: ["Ami Polymer"] },
+      { title: "Downstream Ion Chromatography", brands: ["VERDOT"] },
+      { title: "Downstream Ion Chromatography Resin", brands: ["ECOLAB"] },
+      { title: "Advanced Fluid & Cold Chain Management", brands: ["Single Use Support"] },
+      { title: "Bioprocess Equipment", brands: ["PharmNXT Biotech"] },
+      {
+        title: "ATMP Isolator",
+        brands: [],
+        contact: {
+          th: "\u0e16\u0e49\u0e32\u0e2a\u0e19\u0e43\u0e08\u0e2a\u0e34\u0e19\u0e04\u0e49\u0e32\u0e15\u0e31\u0e27\u0e19\u0e35\u0e49 \u0e42\u0e1b\u0e23\u0e14\u0e15\u0e34\u0e14\u0e15\u0e48\u0e2d\u0e40\u0e1a\u0e2d\u0e23\u0e4c",
+          en: "If you are interested in this product, please call",
+          phone: "095-559-4658",
+        },
+      },
+      { title: "Rapid Validation Enzyme Indicator", brands: ["Protak Scientific"] },
+      { title: "Surface Disinfection", brands: ["Sanosil"] },
+      { title: "Air Sampler / Environmental Monitoring", brands: [] },
+    ],
+  },
+  {
+    key: "lab",
+    title: "Laboratory / QC Purpose",
+    subs: [
+      { title: "Filter Integrity Tester, Packing Leak Tester, Glove Integrity Test, Bag Integrity Tester", brands: ["Neuron BC"] },
+      { title: "Laboratory Autoclave", brands: ["SteelcoBelimed"] },
+      { title: "Undercounter Laboratory Washer", brands: ["SteelcoBelimed"] },
+      { title: "Laboratory / Bench Top Fermentor / Bioreactor", brands: ["Bioengineering"] },
+      { title: "Silicone Tubing for Laboratory", brands: ["Ami Polymer"] },
+      { title: "Filtration Trials Test Kit for Scale-up", brands: ["Filtrox"] },
+      { title: "Vacuum Filter Unit / Air Filter Disc / Capsule", brands: ["Le Pure"] },
+      // Shared with Production Purpose: these serve both settings, so they are
+      // listed at the end of both groups and the same products appear in each.
+      { title: "Surface Disinfection", brands: ["Sanosil"] },
+      { title: "Air Sampler / Environmental Monitoring", brands: [] },
+    ],
+  },
+];
+
+// Flat list of every sub-category title, in display order.
+// Used by the admin form dropdown and the catalog page.
+export const PRODUCT_CATEGORIES = [
+  ...new Set(PRODUCT_GROUPS.flatMap((g) => g.subs.map((s) => s.title))),
+];
+
+export type ProductCategory = string;
 
 export const PRODUCT_TONES = ["tube", "device", "liquid", "kit", "air"] as const;
 export type ProductTone = (typeof PRODUCT_TONES)[number];
