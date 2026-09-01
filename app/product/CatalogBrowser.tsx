@@ -4,43 +4,36 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import ProductThumb from "../components/landing/ProductThumb";
 import { PRODUCT_GROUPS } from "@/lib/catalog";
-import type { CategorySub, Product } from "@/lib/catalog";
+import type { Product } from "@/lib/catalog";
 
 type Scope =
   | { mode: "all" }
   | { mode: "group"; key: string }
   | { mode: "sub"; key: string }; // key = `${groupKey}|${subTitle}`
 
-const UNGROUPED_KEY = "__other";
-
-export default function CatalogBrowser({ products }: { products: Product[] }) {
+export default function CatalogBrowser({ products: allProducts }: { products: Product[] }) {
   const [scope, setScope] = useState<Scope>({ mode: "all" });
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
   const [query, setQuery] = useState("");
 
-  // Build the display tree: the fixed taxonomy, plus a trailing bucket for any
-  // product whose category is not (or no longer) part of it.
-  const groups = useMemo(() => {
+  // Only products whose category belongs to the taxonomy are listed; anything
+  // left over from an older category scheme stays hidden until it is remapped.
+  const products = useMemo(() => {
     const known = new Set(
       PRODUCT_GROUPS.flatMap((g) => g.subs.map((s) => s.title))
     );
-    const strays = [
-      ...new Set(products.map((p) => p.category).filter((c) => !known.has(c))),
-    ];
-    const tree = PRODUCT_GROUPS.map((g) => ({
-      key: g.key,
-      title: g.title,
-      subs: g.subs,
-    }));
-    if (strays.length) {
-      tree.push({
-        key: UNGROUPED_KEY,
-        title: "อื่น ๆ",
-        subs: strays.map((title): CategorySub => ({ title, brands: [] })),
-      });
-    }
-    return tree;
-  }, [products]);
+    return allProducts.filter((p) => known.has(p.category));
+  }, [allProducts]);
+
+  const groups = useMemo(
+    () =>
+      PRODUCT_GROUPS.map((g) => ({
+        key: g.key,
+        title: g.title,
+        subs: g.subs,
+      })),
+    []
+  );
 
   const q = query.trim().toLowerCase();
   const matchesQuery = (p: Product) =>
