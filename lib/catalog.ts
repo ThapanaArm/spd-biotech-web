@@ -206,7 +206,7 @@ export type CategoryGroup = {
 export const PRODUCT_GROUPS: CategoryGroup[] = [
   {
     key: "production",
-    title: "Production Purpose",
+    title: "Production",
     subs: [
       { title: "Autoclave / Steam Sterilizer", brands: ["SteelcoBelimed"] },
       { title: "Washer", brands: ["SteelcoBelimed"] },
@@ -235,7 +235,7 @@ export const PRODUCT_GROUPS: CategoryGroup[] = [
   },
   {
     key: "lab",
-    title: "Laboratory / QC Purpose",
+    title: "Laboratory / QC",
     subs: [
       { title: "Filter Integrity Tester, Packing Leak Tester, Glove Integrity Test, Bag Integrity Tester", brands: ["Neuron BC"] },
       { title: "Laboratory Autoclave", brands: ["SteelcoBelimed"] },
@@ -244,7 +244,7 @@ export const PRODUCT_GROUPS: CategoryGroup[] = [
       { title: "Silicone Tubing for Laboratory", brands: ["Ami Polymer"] },
       { title: "Filtration Trials Test Kit for Scale-up", brands: ["Filtrox"] },
       { title: "Vacuum Filter Unit / Air Filter Disc / Capsule", brands: ["Le Pure"] },
-      // Shared with Production Purpose: these serve both settings, so they are
+      // Shared with Production: these serve both settings, so they are
       // listed at the end of both groups and the same products appear in each.
       { title: "Surface Disinfection", brands: ["Sanosil"] },
       { title: "Air Sampler / Environmental Monitoring", brands: [] },
